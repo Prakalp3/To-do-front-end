@@ -76,6 +76,8 @@ export default function AuthProvider({ children }) {
                 setUsername(username)
                 setToken(jwtToken)
 
+                localStorage.setItem("token", jwtToken);
+
                 apiClient.interceptors.request.use(
                     (config) => {
                         console.log('intercepting and adding a token')

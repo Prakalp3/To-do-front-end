@@ -1,16 +1,31 @@
 import { apiClient } from './ApiClient'
-
+import axios from "axios"
 export const retrieveAllTodosForUsernameApi
-    = (username) => apiClient.get(`/users/${username}/todos`)
+    = async (username) => await axios.get(`/users/${username}/todos`,{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }, })
 
 export const deleteTodoApi
-    = (username, id) => apiClient.delete(`/users/${username}/todos/${id}`)
+    = (username, id) => axios.delete(`/users/${username}/todos/${id}`,{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }, })
 
 export const retrieveTodoApi
-    = (username, id) => apiClient.get(`/users/${username}/todos/${id}`)
+    = (username, id) => axios.get(`/users/${username}/todos/${id}`,{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }, })
 
 export const updateTodoApi
-    = (username, id, todo) => apiClient.put(`/users/${username}/todos/${id}`, todo)
+    = (username, id, todo) => axios.put(`/users/${username}/todos/${id}`, todo,{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }, })
 
 export const createTodoApi
-    = (username,  todo) => apiClient.post(`/users/${username}/todos`, todo)
+    = (username,  todo) => axios.post(`/users/${username}/createTodos`, todo,{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }, })
