@@ -45,6 +45,7 @@ export default function TodoComponent() {
         }
 
         console.log(todo)
+        console.log("**************** "+id)
 
         if(id===-1) {
             createTodoApi(username, todo)

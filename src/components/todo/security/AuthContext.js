@@ -78,13 +78,13 @@ export default function AuthProvider({ children }) {
 
                 localStorage.setItem("token", jwtToken);
 
-                apiClient.interceptors.request.use(
-                    (config) => {
-                        console.log('intercepting and adding a token')
-                        config.headers.Authorization = jwtToken
-                        return config
-                    }
-                )
+                // apiClient.interceptors.request.use(
+                //     (config) => {
+                //         console.log('intercepting and adding a token')
+                //         config.headers.Authorization = jwtToken
+                //         return config
+                //     }
+                // )
 
                 return true            
             } else {

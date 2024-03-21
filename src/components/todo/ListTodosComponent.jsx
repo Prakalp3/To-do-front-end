@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   retrieveAllTodosForUsernameApi,
   deleteTodoApi,
+  getUserData
 } from './api/TodoApiService'
 import { useAuth } from './security/AuthContext'
 
@@ -21,9 +22,13 @@ function ListTodosComponent() {
     today.getDay()
   )
 
+  
+
   const [todos, setTodos] = useState([])
 
   const [message, setMessage] = useState(null)
+
+  const [userId, setUserId] = useState(null)
 
   useEffect(() => refreshTodos(), [])
 
@@ -35,6 +40,7 @@ function ListTodosComponent() {
         setTodos(response.data)
       })
       .catch((error) => console.log(error))
+      
   }
 
   function deleteTodo(id) {
@@ -57,7 +63,23 @@ function ListTodosComponent() {
   }
 
   function addNewTodo() {
-    navigate(`/todo/-1`)
+    if(todos.length===0){
+      console.log("------------- "+-1)
+      navigate(`/todo/-1`)
+    }
+    // retrieveAllTodosForUsernameApi(username)
+    //   .then((response) => {
+    //     console.log(response)
+    //     setTodos(response.data)
+    //   })
+    //   .catch((error) => console.log(error))
+    console.log(todos)
+    let id =  todos.slice(-1).pop().id;
+  
+    
+    console.log("+++++++++ "+id)
+    navigate(`/todo/${++id}`)
+    
   }
 
   return (
